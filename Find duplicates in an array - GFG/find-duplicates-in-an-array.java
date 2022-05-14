@@ -21,26 +21,20 @@ class GFG {
 
 
 class Solution {
-    public static ArrayList<Integer> duplicates(int arr[], int n) {
+    public static ArrayList<Integer> duplicates(int nums[], int n) {
         // code here4
-        ArrayList<Integer> b = new ArrayList<>();
-         for (int i = 0; i < n; i++) 
-        {
-            int index = arr[i] % n;
-            arr[index] += n;
+         int[] arr = new int[nums.length+1];
+        ArrayList<Integer> ans = new ArrayList<>();
+        for(int i=0;i<nums.length;i++){
+           arr[nums[i]]++;
         }
-
-        // Now check which value exists more
-        // than once by dividing with the size
-        // of array
-        for (int i = 0; i < n; i++) 
-        {
-            if ((arr[i] / n) >= 2)
-                b.add(i);
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]>1) ans.add(i);
         }
+        // return ans;
     
-        Collections.sort(b);
-        if(b.isEmpty())  b.add(-1);
-        return b;
+        Collections.sort(ans);
+        if(ans.isEmpty())  ans.add(-1);
+        return ans;
     }
 }
